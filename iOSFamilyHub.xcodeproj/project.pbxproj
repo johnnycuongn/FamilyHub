@@ -11,6 +11,8 @@
 		40A7A35C2AA6F9CB0037A258 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7A35B2AA6F9CB0037A258 /* ContentView.swift */; };
 		40A7A35E2AA6F9CB0037A258 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A7A35D2AA6F9CB0037A258 /* Assets.xcassets */; };
 		40A7A3622AA6F9CB0037A258 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A7A3612AA6F9CB0037A258 /* Preview Assets.xcassets */; };
+		40A7A36A2AA6FDB60037A258 /* JsonBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7A3692AA6FDB60037A258 /* JsonBundle.swift */; };
+		40A7A36F2AA6FF240037A258 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7A36E2AA6FF240037A258 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		40A7A35D2AA6F9CB0037A258 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40A7A35F2AA6F9CB0037A258 /* iOSFamilyHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSFamilyHub.entitlements; sourceTree = "<group>"; };
 		40A7A3612AA6F9CB0037A258 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		40A7A3692AA6FDB60037A258 /* JsonBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonBundle.swift; sourceTree = "<group>"; };
+		40A7A36E2AA6FF240037A258 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,10 @@
 		40A7A3582AA6F9CB0037A258 /* iOSFamilyHub */ = {
 			isa = PBXGroup;
 			children = (
+				40A7A36D2AA6FDE40037A258 /* Model */,
+				40A7A36C2AA6FDDA0037A258 /* View */,
+				40A7A36B2AA6FDD40037A258 /* ViewModel */,
+				40A7A3682AA6FD8C0037A258 /* Extensions */,
 				40A7A3592AA6F9CB0037A258 /* iOSFamilyHubApp.swift */,
 				40A7A35B2AA6F9CB0037A258 /* ContentView.swift */,
 				40A7A35D2AA6F9CB0037A258 /* Assets.xcassets */,
@@ -67,6 +75,36 @@
 				40A7A3612AA6F9CB0037A258 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		40A7A3682AA6FD8C0037A258 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				40A7A3692AA6FDB60037A258 /* JsonBundle.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		40A7A36B2AA6FDD40037A258 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		40A7A36C2AA6FDDA0037A258 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		40A7A36D2AA6FDE40037A258 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40A7A36E2AA6FF240037A258 /* Post.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +177,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40A7A36A2AA6FDB60037A258 /* JsonBundle.swift in Sources */,
 				40A7A35C2AA6F9CB0037A258 /* ContentView.swift in Sources */,
 				40A7A35A2AA6F9CB0037A258 /* iOSFamilyHubApp.swift in Sources */,
+				40A7A36F2AA6FF240037A258 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
