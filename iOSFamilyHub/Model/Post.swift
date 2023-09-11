@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 struct Post : Identifiable, Decodable {
     let id: UUID
@@ -15,4 +17,6 @@ struct Post : Identifiable, Decodable {
     let location: String
     let description: String
     var isLike: Bool = false
+    
+
 }
