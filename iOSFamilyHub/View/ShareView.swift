@@ -18,7 +18,7 @@ struct ShareView: View {
     
     @State private var isLoading: Bool = false
     @State private var inProgress: Bool = false
-    @State private var showAlert = false
+    @State private var showSuccessAlert = false
     
     @State private var errorText = ""
 
@@ -72,7 +72,7 @@ struct ShareView: View {
             .background(Color.blue)
             .foregroundColor(.white)
             .cornerRadius(8)
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $showSuccessAlert) {
                 Alert(title: Text("Shared!"), message: Text("Your post has been shared."), dismissButton: .default(Text("OK")))
             }
             
@@ -81,7 +81,6 @@ struct ShareView: View {
     
     func sharePost() {
         errorText = ""
-        showAlert = true
         if (description.trimmingCharacters(in: .whitespaces).isEmpty) {
             errorText = "Empty description. Share more of what you are thinking to your beloved family."
             return
@@ -91,9 +90,9 @@ struct ShareView: View {
             errorText = "Where are your at? You don't have to be specific."
             return
         }
-        
+        showSuccessAlert = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            showAlert = false
+            showSuccessAlert = false
             viewModel.addPost(author: author, description: description, location: location, image: nil)
             
             self.description = ""
