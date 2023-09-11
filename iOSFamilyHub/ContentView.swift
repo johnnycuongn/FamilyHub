@@ -8,14 +8,43 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel = PostViewModel()
+    @ObservedObject var appViewModel = ApplicationViewModel.main
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            if !appViewModel.isUserLoggedIn {
+                LoginPage()
+            }
+            else {
+                TabView {
+                    HomePageView(viewModel: viewModel)
+                        .tabItem {
+                            Image(systemName: "house.fill")
+                            Text("Home")
+                        }
+                    
+                    ShareView(viewModel: viewModel)
+                        .tabItem {
+                            Image(systemName: "square.and.arrow.up")
+                            Text("Share")
+                        }
+                    
+                    Text("Events Coming Soon")
+                        .tabItem {
+                            Image(systemName: "bell.fill")
+                            Text("Events")
+                        }
+                    
+                    SettingsView(appViewModel: appViewModel)
+                        .tabItem {
+                            Image(systemName: "gear")
+                            Text("Settings")
+                        }
+                }
+           }
         }
-        .padding()
     }
 }
 
