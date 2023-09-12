@@ -8,6 +8,21 @@
 import Foundation
 import UIKit
 
+protocol DisplayablePostInterface {
+    var author: String { get }
+    var date: Date { get }
+    var location: String { get }
+    var description: String { get }
+    var isLike: Bool { get }
+}
+
+extension DisplayablePostInterface {
+    var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.string(from: date)
+    }
+}
 
 struct Post : Identifiable, Decodable {
     let id: UUID
