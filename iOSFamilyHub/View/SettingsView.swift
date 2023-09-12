@@ -19,11 +19,12 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             if currentUserAvailable {
-                Text("Welcome " + appViewModel.user + "!")
+                Text("Welcome " + appViewModel.user + "!").font(.title)
             }
-            
+            Divider()
+            Spacer()
             Button {
                     // Logout User
                     handleLogout()
@@ -39,6 +40,8 @@ struct SettingsView: View {
 
           
         }
+        .padding(16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
     
     func handleLogout() {
@@ -52,6 +55,7 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = ApplicationViewModel()
-        SettingsView(appViewModel: vm)
+        vm.signIn(username: "hello")
+        return SettingsView(appViewModel: vm)
     }
 }

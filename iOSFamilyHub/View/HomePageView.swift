@@ -12,21 +12,19 @@ struct PostView: View {
     var body: some View {
         NavigationLink(destination: PostDetailView(post: $post)) {
             VStack(alignment: .leading) {
-                
-                
-                // Description
-                Text(post.description)
-                    .font(.headline)
-                    .padding(.top, 10)
-                
-                // Location
                 HStack {
                     Image(systemName: "person.fill")
                         .foregroundColor(.gray)
                     Text(post.author)
                         .font(.subheadline)
                         .foregroundColor(.gray)
-                }.padding(.top, 5)
+                }
+                
+                // Description
+                Text(post.description)
+                    .font(.headline)
+                    .padding(.top, 10)
+
                 
                 // Author and Date
                 HStack {
