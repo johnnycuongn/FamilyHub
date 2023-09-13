@@ -18,11 +18,13 @@ struct CardView<Content: View>: View {
         VStack(alignment: .leading) {
             content
         }
+        .frame(maxWidth: .infinity)
         .padding()
         .background(Color.white)
         .cornerRadius(10)
         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
         .padding([.top, .horizontal])
+        
     }
 }
 
