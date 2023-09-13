@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel = PostViewModel()
+    @ObservedObject var eventsViewModel = EventViewModel()
     @ObservedObject var appViewModel = ApplicationViewModel.main
     
     
@@ -31,7 +32,7 @@ struct ContentView: View {
                             Text("Share")
                         }
                     
-                    Text("Events Coming Soon")
+                    EventsView(viewModel: eventsViewModel)
                         .tabItem {
                             Image(systemName: "bell.fill")
                             Text("Events")

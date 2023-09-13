@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+enum PostViewModelError: Error {
+    case invalidDescription
+    case invalidLocation
+}
+
 protocol PostViewModelInterface: ObservableObject {
     var posts: [Post] {get set}
 }
@@ -15,14 +20,22 @@ protocol PostViewModelInterface: ObservableObject {
 class PostViewModel: ObservableObject, PostViewModelInterface {
     @Published var posts: [Post] = []
 
-     func addPost(author: String, description: String, location: String, image: UIImage?) {
+     func addPost(author: String, description: String, location: String, image: UIImage?) throws {
          let id = UUID()
          print("Adding new post")
+         
+         // POST VALIDATION
+         if (description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+             throw PostViewModelError.invalidDescription
+         }
+         if (location.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+             throw PostViewModelError.invalidLocation
+         }
+         
          let newPost = Post(id: id, author: author, imagePath: "", date: Date(), location: location, description: description)
          posts.append(newPost)
      }
     
-    // ... Save and Load JSON functions
 }
 
 // Define a Store class that conforms to the ObservableObject protocol

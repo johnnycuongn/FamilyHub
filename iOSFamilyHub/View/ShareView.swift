@@ -16,18 +16,15 @@ struct ShareView: View {
     @State private var location: String = ""
     private var author: String {return self.appViewModel.user}
     
-    @State private var isLoading: Bool = false
-    @State private var inProgress: Bool = false
-    @State private var showSuccessAlert = false
+    @State private var isLoading: Bool = false // For any loading state
+    @State private var showSuccessAlert = false // State of Showing alert
     
-    @State private var errorText = ""
+    @State private var errorText = "" // Error text for the view
 
     
     var body: some View {
         VStack {
             Spacer()  // Pushes the content below to the center
-            
-            
             
             TextField("Description", text: $description)
                 .padding()
@@ -38,7 +35,7 @@ struct ShareView: View {
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
             
-            Text("Where are you at? In Sydney or New york?").font(.caption).foregroundColor(.gray).frame(maxWidth: .infinity, alignment: .leading).padding(.bottom)
+            (Text("Where are you at? In Sydney or New york?")).font(.caption).foregroundColor(.gray).frame(maxWidth: .infinity, alignment: .leading).padding(.bottom)
             
             Spacer()  // Pushes the content above to the center
             
@@ -69,9 +66,10 @@ struct ShareView: View {
             }
             .frame(maxWidth: .infinity)
             .padding()
-            .background(Color.blue)
+            .background(isLoading ? .gray : .blue)
             .foregroundColor(.white)
             .cornerRadius(8)
+            .disabled(isLoading)
             .alert(isPresented: $showSuccessAlert) {
                 Alert(title: Text("Shared!"), message: Text("Your post has been shared."), dismissButton: .default(Text("OK")))
             }
@@ -81,28 +79,35 @@ struct ShareView: View {
     
     func sharePost() {
         errorText = ""
-        if (description.trimmingCharacters(in: .whitespaces).isEmpty) {
-            errorText = "Empty description. Share more of what you are thinking to your beloved family."
-            return
-        }
+        isLoading = true
+//        if (description.trimmingCharacters(in: .whitespaces).isEmpty) {
+//            errorText = "Empty description. Share more of what you are thinking to your beloved family."
+//            return
+//        }
         
-        if (location.trimmingCharacters(in: .whitespaces).isEmpty) {
-            errorText = "Where are your at? You don't have to be specific."
-            return
-        }
-        showSuccessAlert = true
+//        if (location.trimmingCharacters(in: .whitespaces).isEmpty) {
+//            errorText = "Where are your at? You don't have to be specific."
+//            return
+//        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            showSuccessAlert = false
-            viewModel.addPost(author: author, description: description, location: location, image: nil)
+            do {
+                defer { isLoading = false }
+                try viewModel.addPost(author: author, description: description, location: location, image: nil)
+                showSuccessAlert = true
+            } catch PostViewModelError.invalidDescription {
+                print("Invalid Description")
+                errorText = "Empty description. Share more of what you are thinking to your beloved family."
+            } catch PostViewModelError.invalidLocation {
+                print("Invalid Location")
+                errorText = "Where are your at? You don't have to be specific."
+            } catch {
+                print("An unexpected error occurred: \(error)")
+            }
             
             self.description = ""
             self.location = ""
         }
-        
-        
-        
-        
-        
     }
 }
 

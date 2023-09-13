@@ -81,7 +81,11 @@ struct HomePageView: View {
 struct HomePageView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = PostViewModel()
-        vm.addPost(author: "2", description: "222222", location: "ASDAS", image: nil)
+        do {
+            try vm.addPost(author: "2", description: "222222", location: "ASDAS", image: nil)
+        } catch {
+            print(error)
+        }
         return HomePageView(viewModel: vm)
     }
 }
