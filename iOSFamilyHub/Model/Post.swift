@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-protocol DisplayablePostInterface {
+protocol Interactable {
+    var isLike: Bool { get }
+}
+
+protocol DisplayablePostInterface: Interactable {
     var author: String { get }
     var date: Date { get }
     var location: String { get }
@@ -24,7 +28,7 @@ extension DisplayablePostInterface {
     }
 }
 
-struct Post : Identifiable, Decodable {
+struct Post : DisplayablePostInterface, Identifiable, Decodable {
     let id: UUID
     let author : String
     let imagePath: String

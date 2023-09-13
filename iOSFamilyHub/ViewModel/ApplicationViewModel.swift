@@ -10,10 +10,11 @@ import Foundation
 // This is ApplicationViewModel. Using for
 
 protocol ApplicationViewModelInterface: ObservableObject {
-    
+    var user: String { get set } // Presented as current user
+    var isUserLoggedIn: Bool { get } // Get current status of user
 }
 
-class ApplicationViewModel: ObservableObject {
+class ApplicationViewModel: ApplicationViewModelInterface {
     @Published var user: String = ""
     
     @Published var isUserLoggedIn: Bool = false
@@ -26,10 +27,12 @@ class ApplicationViewModel: ObservableObject {
         self.isUserLoggedIn = true
     }
     
+    /// Logout current user
     public func logout() {
         self.user = ""
         self.isUserLoggedIn = false
     }
+    
     
     public func isUserAvailable() -> Bool {
         return self.user != ""

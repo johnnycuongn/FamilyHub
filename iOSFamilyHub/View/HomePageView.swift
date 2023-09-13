@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-struct PostView: View {
-    @Binding var post: Post
+struct PostView<DisplayableContent: DisplayablePostInterface>: View {
+    @Binding var post: DisplayableContent
 
     var body: some View {
         NavigationLink(destination: PostDetailView(post: $post)) {
-            VStack(alignment: .leading) {
+            CardView {
                 HStack {
                     Image(systemName: "person.fill")
                         .foregroundColor(.gray)
@@ -44,11 +44,6 @@ struct PostView: View {
                         .foregroundColor(.gray)
                 }.padding(.top, 5)
             }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(10)
-            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-            .padding([.top, .horizontal])
         }.buttonStyle(PlainButtonStyle())
     }
 }
@@ -69,9 +64,16 @@ struct HomePageView: View {
                    }
                }
            }
-            .navigationTitle("Welcome " + appViewModel.user)
+            .navigationTitle(getCurrentDate())
        
         }
+    }
+    
+    func getCurrentDate() -> String {
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: currentDate)
     }
     
     

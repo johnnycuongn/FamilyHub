@@ -22,6 +22,8 @@
 		40A7A3802AA8A2F30037A258 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7A37F2AA8A2F30037A258 /* SettingsView.swift */; };
 		40A7A3822AA8A3220037A258 /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7A3812AA8A3220037A258 /* ApplicationViewModel.swift */; };
 		40CAFFE72AA9F93500142824 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAFFE62AA9F93500142824 /* LoginPage.swift */; };
+		40CAFFE92AB14D8E00142824 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAFFE82AB14D8E00142824 /* EventsView.swift */; };
+		40CAFFEE2AB1506400142824 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAFFED2AB1506400142824 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		40A7A37F2AA8A2F30037A258 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		40A7A3812AA8A3220037A258 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
 		40CAFFE62AA9F93500142824 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		40CAFFE82AB14D8E00142824 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
+		40CAFFED2AB1506400142824 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,11 +120,13 @@
 		40A7A36C2AA6FDDA0037A258 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				40CAFFEC2AB1505900142824 /* Components */,
 				40A7A3742AA809610037A258 /* HomePageView.swift */,
 				40A7A3762AA8214A0037A258 /* ShareView.swift */,
 				40A7A37A2AA8332B0037A258 /* PostDetailView.swift */,
 				40A7A37F2AA8A2F30037A258 /* SettingsView.swift */,
 				40CAFFE62AA9F93500142824 /* LoginPage.swift */,
+				40CAFFE82AB14D8E00142824 /* EventsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +146,14 @@
 				40A7A37D2AA835050037A258 /* 1.JPG */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		40CAFFEC2AB1505900142824 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				40CAFFED2AB1506400142824 /* CardView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,10 +235,12 @@
 				40A7A3802AA8A2F30037A258 /* SettingsView.swift in Sources */,
 				40CAFFE72AA9F93500142824 /* LoginPage.swift in Sources */,
 				40A7A37B2AA8332B0037A258 /* PostDetailView.swift in Sources */,
+				40CAFFEE2AB1506400142824 /* CardView.swift in Sources */,
 				40A7A3772AA8214A0037A258 /* ShareView.swift in Sources */,
 				40A7A35A2AA6F9CB0037A258 /* iOSFamilyHubApp.swift in Sources */,
 				40A7A3752AA809610037A258 /* HomePageView.swift in Sources */,
 				40A7A36F2AA6FF240037A258 /* Post.swift in Sources */,
+				40CAFFE92AB14D8E00142824 /* EventsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

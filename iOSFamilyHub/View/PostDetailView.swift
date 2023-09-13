@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct PostDetailView: View {
-    @Binding var post : DisplayablePostInterface
+struct PostDetailView<DisplayableContent: DisplayablePostInterface>: View {
+    
+    @Binding var post : DisplayableContent
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -56,6 +57,6 @@ struct PostDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let dummyPost = Post(id: UUID(), author: "John Doe", imagePath: "1", date: Date(), location: "Sydney", description: "Sample Description")
         
-        PostDetailView(post: .constant(dummyPost as! DisplayablePostInterface))
+        PostDetailView(post: .constant(dummyPost))
     }
 }
