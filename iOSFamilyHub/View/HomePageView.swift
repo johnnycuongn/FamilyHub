@@ -26,7 +26,7 @@ struct PostView<DisplayableContent: DisplayablePostInterface>: View {
                     .padding(.top, 10)
 
                 
-                // Author and Date
+                // Location and Date
                 HStack {
                     Image(systemName: "location")
                         .foregroundColor(.gray)

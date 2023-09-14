@@ -80,15 +80,6 @@ struct ShareView: View {
     func sharePost() {
         errorText = ""
         isLoading = true
-//        if (description.trimmingCharacters(in: .whitespaces).isEmpty) {
-//            errorText = "Empty description. Share more of what you are thinking to your beloved family."
-//            return
-//        }
-        
-//        if (location.trimmingCharacters(in: .whitespaces).isEmpty) {
-//            errorText = "Where are your at? You don't have to be specific."
-//            return
-//        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             do {
