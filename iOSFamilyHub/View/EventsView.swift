@@ -13,6 +13,9 @@ struct EventCardView<DisplayableContent: DisplayableEventInterface>: View {
     var body: some View {
         
             CardView {
+                Text(event.title)
+                    .font(.title)
+                    .padding(.bottom, 2)
                 HStack {
                     Image(systemName: "person.fill")
                         .foregroundColor(.gray)
@@ -20,30 +23,36 @@ struct EventCardView<DisplayableContent: DisplayableEventInterface>: View {
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 2)
+                
+                HStack {
+                    Image(systemName: "calendar")
+                        .foregroundColor(.gray)
+                    Text(event.date.formatted(.dateTime))
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }.padding(.bottom, 2)
+                
+                HStack {
+                    Image(systemName: "location")
+                        .foregroundColor(.gray)
+                    Text(event.location)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }.padding(.bottom, 2)
+                
+                HStack {
+                    Image(systemName: "person.3")
+                        .foregroundColor(.gray)
+                    Text(event.members.joined(separator: ",")).foregroundColor(.gray) // Turn array of members into string with commas
+                }
                 
                 // Description
                 Text(event.description)
                     .font(.headline)
                     .padding(.top, 10)
-//
-//
-//                // Author and Date
-//                HStack {
-//                    Image(systemName: "location")
-//                        .foregroundColor(.gray)
-//                    Text(post.location)
-//                        .font(.subheadline)
-//                        .foregroundColor(.gray)
-//
-//
-//                    Spacer()
-//
-//                    Image(systemName: "calendar")
-//                        .foregroundColor(.gray)
-//                    Text(post.date.formatted(.dateTime))
-//                        .font(.subheadline)
-//                        .foregroundColor(.gray)
-//                }.padding(.top, 5)
+
             }
     }
 }
@@ -52,21 +61,22 @@ struct EventsView: View {
     @ObservedObject var viewModel: EventViewModel
     @ObservedObject var appViewModel = ApplicationViewModel.main
     
-    // Load image from system path
     
     var body: some View {
         NavigationView {
             ScrollView {
-                NavigationLink(destination: NewEventView(viewModel: self.viewModel)) {
-                    ActionButton(title: "Add") {}
-                }
                 
-                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                 LazyVStack {
                    ForEach(viewModel.events.indices, id: \.self) { i in
                        EventCardView(event: $viewModel.events[i])
                    }
                 }
+                NavigationLink(destination: NewEventView(viewModel: self.viewModel)) {
+                    CardView {
+                        Text("+ Add Event")
+                    }
+                }
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             }
         }
     }

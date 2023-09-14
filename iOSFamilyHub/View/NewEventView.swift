@@ -11,6 +11,8 @@ struct NewEventView: View {
     
     @ObservedObject var viewModel: EventViewModel
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State private var title: String = ""
     @State private var date: Date = Date()
     @State private var location: String = ""
@@ -50,45 +52,69 @@ struct NewEventView: View {
            
            Spacer()
            
-           Button("Add Event") {
+           if errorText != "" {
+               Text(errorText).foregroundColor(.red).frame(maxWidth: .infinity, alignment: .leading).padding().overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.red, lineWidth: 1))
+           }
+           
+           Button(action: {
                // Logic to add the new event
+               addEvent()
+           }) {
+               HStack(spacing: 5) {
+                   if isLoading {
+                       ProgressView()
+                   }
+                   else {
+                       Image(systemName: "plus")
+                           .foregroundColor(.white)
+                   }
+                   Text("Create Event")
+                       .fontWeight(.semibold)
+               }
            }
            .frame(maxWidth: .infinity)
            .padding()
-           .background(Color.blue)
+           .background(isLoading ? .gray : .blue)
            .foregroundColor(.white)
            .cornerRadius(8)
+           .disabled(isLoading)
+           .alert(isPresented: $showSuccessAlert) {
+               Alert(title: Text("Event Created!"), message: Text("A new event has been shared."), dismissButton: .default(Text("OK")))
+           }
            
        }.padding([.leading, .trailing], 20)
     }
     
     func addEvent() {
         errorText = ""
-        if (description.trimmingCharacters(in: .whitespaces).isEmpty) {
-            errorText = "Empty description. Please add a description for your event"
-            return
-        }
+        isLoading = true
         
-        if (location.trimmingCharacters(in: .whitespaces).isEmpty) {
-            errorText = "Where are your at? You don't have to be specific."
-            return
-        }
-        showSuccessAlert = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            showSuccessAlert = false
             
             do {
-//                try viewModel.addPost(author: author, description: description, location: location, image: nil)
-            } catch PostViewModelError.invalidDescription {
-                print("Invalid Description")
-            } catch PostViewModelError.invalidLocation {
-                print("Invalid Location")
+                defer { isLoading = false }
+                try viewModel.addEvent(title: title, date: date, location: location, organiser: organiser, members: members.split(separator: ",").map { String($0) }, description: description)
+                showSuccessAlert = true
+                
+                // Return to previous page
+                self.presentationMode.wrappedValue.dismiss()
+                
+            } catch EventsViewModelError.invalidTitle {
+                errorText = "Invalid Title"
+            } catch EventsViewModelError.invalidLocation {
+                errorText = "Invalid Location"
+            } catch EventsViewModelError.invalidDescription {
+                errorText = "Invalid Description"
             } catch {
-                print("An unexpected error occurred: \(error)")
+                errorText = error.localizedDescription
             }
             
+            self.title = ""
+            self.date = Date()
+            self.organiser = ""
             self.description = ""
             self.location = ""
+            self.members = ""
         }
     }
 }
