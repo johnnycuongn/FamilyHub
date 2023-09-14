@@ -15,6 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
+            // If no user is presented, display a login page
             if !appViewModel.isUserLoggedIn {
                 LoginPage()
             }

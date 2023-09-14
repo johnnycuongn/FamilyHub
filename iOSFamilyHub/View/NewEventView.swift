@@ -89,6 +89,7 @@ struct NewEventView: View {
         errorText = ""
         isLoading = true
         
+        // Delay process to stimulate the loading process
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             
             do {

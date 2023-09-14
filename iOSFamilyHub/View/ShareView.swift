@@ -17,7 +17,7 @@ struct ShareView: View {
     private var author: String {return self.appViewModel.user}
     
     @State private var isLoading: Bool = false // For any loading state
-    @State private var showSuccessAlert = false // State of Showing alert
+    @State private var showSuccessAlert = false // State of Showing success alert
     
     @State private var errorText = "" // Error text for the view
 
@@ -81,6 +81,7 @@ struct ShareView: View {
         errorText = ""
         isLoading = true
         
+        // Delay process to stimulate the loading process
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             do {
                 defer { isLoading = false }

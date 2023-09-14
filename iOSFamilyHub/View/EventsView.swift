@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Event Card View for Events Page
 struct EventCardView<DisplayableContent: DisplayableEventInterface>: View {
     @Binding var event: DisplayableContent
 
