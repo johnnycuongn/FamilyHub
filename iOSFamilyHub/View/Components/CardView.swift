@@ -18,7 +18,7 @@ struct CardView<Content: View>: View {
         VStack(alignment: .leading) {
             content
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
         .background(Color.white)
         .cornerRadius(10)
