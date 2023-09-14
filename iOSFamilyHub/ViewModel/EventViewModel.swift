@@ -18,7 +18,9 @@ protocol EventsViewModelInterface: ObservableObject {
 }
 
 class EventViewModel: ObservableObject, EventsViewModelInterface {
-    @Published var events: [Event] = []
+    @Published var events: [Event] = [
+        Event(id: UUID(), title: "Picnic on Sunday", date: Date(), location: "Sydney", organiser: "Johnny", members: ["Lucia", "Carol"], description: "This picnic is used to hanging out and update our life.")
+    ]
     
     func addEvent(title: String, date: Date, location: String, organiser: String, members: Array<String>, description: String) throws {
         let id = UUID()
