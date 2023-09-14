@@ -21,7 +21,12 @@ struct SettingsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             if currentUserAvailable {
-                Text("Welcome " + appViewModel.user + "!").font(.title)
+                HStack {
+                    Image(systemName: "person.fill")
+                        .foregroundColor(.gray).font(.title)
+                    Text(appViewModel.user).font(.title)
+                }
+                
             }
             Divider()
             Spacer()
